@@ -36,6 +36,7 @@ task removeSolutions << {
 
 // Adapted from http://www.practicalgradle.org/blog/2011/01/convenient-test-execution-with-camel-case-support/
 tasks.addRule('Pattern: koan<Number>: Runs a single Koan') { String taskName ->
+
     if (taskName.startsWith('koan') && taskName.length() > 5) {
         // create a dummy task for the task name specified on the command line
         def dummyTask = task(taskName)
@@ -68,10 +69,9 @@ test.dependsOn sayHello
 gradle.taskGraph.afterTask { task, taskState ->
     if (task.name != 'test')
         return
-
     if (taskState.failure) {
         String testRepDir = project.testReportDir
-        Desktop.desktop.browse(new File(testRepDir, 'index.html').toURI())
+        //Desktop.desktop.browse(new File(testRepDir, 'index.html').toURI())
     } else {
         println "Koan is complete. Well done!"
     }

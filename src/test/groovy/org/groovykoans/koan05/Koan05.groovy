@@ -15,6 +15,7 @@ package org.groovykoans.koan05
  *  http://groovy.codehaus.org/Collections#Collections-Ranges
  *  http://groovy.codehaus.org/groovy-jdk/java/lang/Object.html#eachWithIndex(groovy.lang.Closure)
  */
+
 class Koan05 extends GroovyTestCase {
 
     void test01_IterateWithEach() {
@@ -24,6 +25,7 @@ class Koan05 extends GroovyTestCase {
         for (String s : products) {
             println s
         }
+
         // In Groovy, it can.
         products.each {
             println it
@@ -41,9 +43,11 @@ class Koan05 extends GroovyTestCase {
         // http://groovy.codehaus.org/groovy-jdk/java/util/Map.html#each(groovy.lang.Closure)
         def idListResult = []
         // ------------ START EDITING HERE ----------------------
-        idToNameMap.each { key, value ->
-            idListResult << "$key$value"
+
+        idToNameMap.each {
+            idListResult << (it.key + it.value)
         }
+
         // ------------ STOP EDITING HERE  ----------------------
         assert idListResult == ['333Matthew', '233Christopher', '133Dominic']
     }
@@ -58,7 +62,9 @@ class Koan05 extends GroovyTestCase {
         // What will range equal?
         def expectedRange = []
         // ------------ START EDITING HERE ----------------------
-        expectedRange = [5, 6, 7, 8, 9, 10]
+
+        expectedRange = 5..10 //The hell I can be bothered to type that all out...
+
         // ------------ STOP EDITING HERE  ----------------------
         assert range == expectedRange
     }
@@ -70,14 +76,15 @@ class Koan05 extends GroovyTestCase {
         // http://groovy.codehaus.org/groovy-jdk/java/lang/Object.html#eachWithIndex(groovy.lang.Closure)
         def rangeResult = []
         // ------------ START EDITING HERE ----------------------
-        def range = 'a'..'z'
-        range.eachWithIndex { value, index ->
-            if (index % 2 == 0)
-                rangeResult << value
+
+        ('a'..'z').eachWithIndex { item, index ->
+            if(index % 2 == 0)
+                rangeResult << item
         }
+
         // ------------ STOP EDITING HERE  ----------------------
-        assert rangeResult == ['a', 'c', 'e', 'g', 'i', 'k', 'm', 'o', 'q', 's', 'u', 'w', 'y']
+        assert rangeResult == [
+            'a', 'c', 'e', 'g', 'i', 'k', 'm', 'o', 'q', 's', 'u', 'w', 'y'
+        ]
     }
-
-
 }

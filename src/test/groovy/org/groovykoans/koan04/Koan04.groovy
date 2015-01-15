@@ -37,7 +37,9 @@ class Koan04 extends GroovyTestCase {
         // What is the result from the above execution?
         def expectedHelloClosureResult
         // ------------ START EDITING HERE ----------------------
+
         expectedHelloClosureResult = 'Hello from Closure'
+
         // ------------ STOP EDITING HERE  ----------------------
         assert helloClosureResult == expectedHelloClosureResult
 
@@ -48,7 +50,9 @@ class Koan04 extends GroovyTestCase {
         // What is the result from the above execution?
         String expectedHelloRonalda
         // ------------ START EDITING HERE ----------------------
-        expectedHelloRonalda = 'Hello Ronalda'
+
+        expectedHelloRonalda = "Hello Ronalda"
+
         // ------------ STOP EDITING HERE  ----------------------
         assert helloRonalda == expectedHelloRonalda
 
@@ -61,17 +65,21 @@ class Koan04 extends GroovyTestCase {
         // What is the result from the above execution?
         def expectedHappyBirthdayGranger
         // ------------ START EDITING HERE ----------------------
-        expectedHappyBirthdayGranger = 'Happy Birthday To Hermione'
+        expectedHappyBirthdayGranger = "Happy Birthday To Hermione"
+
         // ------------ STOP EDITING HERE  ----------------------
         assert happyBirthdayGranger == expectedHappyBirthdayGranger
 
         // Create a closure that accepts two integers, adds them, and multiplies the result by two
         def resultClosure
         // ------------ START EDITING HERE ----------------------
-        resultClosure = { int a, int b -> (a + b) * 2 }
+
+        resultClosure  = { int a, int b -> (a + b) * 2 }
+
         // ------------ STOP EDITING HERE  ----------------------
 
         assert resultClosure(2, 3) == 10
+
         shouldFail {
             resultClosure('one', 'two')
         }
@@ -101,6 +109,7 @@ class Koan04 extends GroovyTestCase {
         // Let's check that we got the same result (you can use the assertX methods)
         // ------------ START EDITING HERE ----------------------
         assert javaResult == groovyResult
+
         // ------------ STOP EDITING HERE  ----------------------
 
         // To make the code even cleaner, Groovy allows some syntactic sugar. If your method has a closure as its
@@ -115,7 +124,9 @@ class Koan04 extends GroovyTestCase {
         // What will monkeyColors contain?
         def expectedMonkeyColors = []
         // ------------ START EDITING HERE ----------------------
-        expectedMonkeyColors = ['blue', 'red', 'purple']
+
+        expectedMonkeyColors = ["blue", 'red', 'purple']
+
         // ------------ STOP EDITING HERE  ----------------------
         assert monkeyColors == expectedMonkeyColors
 
@@ -127,10 +138,13 @@ class Koan04 extends GroovyTestCase {
         StringWriter filteredResult = new StringWriter()
         def prefix = 'src/test/groovy/org/groovykoans/koan04/'
         // ------------ START EDITING HERE ----------------------
-        def file = new File("$prefix/exercise.txt")
-        file.filterLine(filteredResult) { String line ->
-            !line.startsWith('#')
-        }
+
+        filteredResult.write(
+            new File("${prefix}exercise.txt").filterLine() {
+                !it.startsWith('#')
+            }
+        )
+
         // ------------ STOP EDITING HERE  ----------------------
 
         String result = filteredResult.toString().trim().replaceAll(/[\n\r]+/, /\n/)
@@ -146,15 +160,20 @@ class Koan04 extends GroovyTestCase {
 
         // Can you guess what count() does? If not, look it up in
         // http://groovy.codehaus.org/groovy-jdk/java/lang/String.html
+
         def expectedCount
+
         // ------------ START EDITING HERE ----------------------
+
         expectedCount = 3
+
         // ------------ STOP EDITING HERE  ----------------------
 
         assert count == expectedCount
 
         // Admittedly, that past example doesn't make the code any clearer.
         // However, when we have methods with a closure as a parameter, it removes a lot of the noise:
+
         def mysteryList = ['Groovy', 'Baby', 'Yeah'].findAll {  // no parenthesis
             it.contains('a')
         }
@@ -162,10 +181,11 @@ class Koan04 extends GroovyTestCase {
         // What will the value of mysteryList be?
         def expectedMysteryList
         // ------------ START EDITING HERE ----------------------
+
         expectedMysteryList = ['Baby', 'Yeah']
+
         // ------------ STOP EDITING HERE  ----------------------
         assert mysteryList == expectedMysteryList
 
     }
-
 }
